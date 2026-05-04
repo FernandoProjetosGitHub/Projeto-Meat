@@ -321,6 +321,7 @@ p {
 .favorites,
 .story-section,
 .knowledge-section,
+.ecosystem-section,
 .order-section,
 .page-shell,
 .signup {
@@ -402,6 +403,53 @@ footer p {
   border: 1px solid rgba(246, 239, 229, 0.1);
 }
 
+.ecosystem-section {
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.ecosystem-card {
+  min-height: 17rem;
+  padding: 1.35rem;
+  color: var(--cream);
+  background:
+    linear-gradient(180deg, rgba(196, 147, 67, 0.1), transparent),
+    rgba(246, 239, 229, 0.045);
+  border: 1px solid rgba(196, 147, 67, 0.18);
+  border-radius: 8px;
+}
+
+.ecosystem-card span {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  padding: 0 0.7rem;
+  color: #160d08;
+  background: var(--amber);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.ecosystem-card h3 {
+  margin: 1rem 0 0.65rem;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.ecosystem-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .story-section.reverse {
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
 }
@@ -430,6 +478,13 @@ footer p {
   background-image:
     linear-gradient(0deg, rgba(13, 11, 9, 0.58), rgba(13, 11, 9, 0.06)),
     url("https://images.unsplash.com/photo-1532635224-cf024e66d122?auto=format&fit=crop&w=1200&q=85");
+}
+
+.story-media-blogger {
+  background-image:
+    linear-gradient(0deg, rgba(13, 11, 9, 0.42), rgba(13, 11, 9, 0.04)),
+    url("https://images.unsplash.com/photo-1532635224-cf024e66d122?auto=format&fit=crop&w=1200&q=85");
+  background-position: center;
 }
 
 .story-media-side {
@@ -625,11 +680,14 @@ footer p {
 
 .order-form .MuiInputBase-root,
 .order-form .MuiInputBase-input,
-.order-form textarea {
+.order-form textarea,
+.signup .signup-input .MuiInputBase-root,
+.signup .signup-input .MuiInputBase-input {
   color: var(--cream);
 }
 
-.order-form .MuiInputLabel-root {
+.order-form .MuiInputLabel-root,
+.signup .signup-input .MuiInputLabel-root {
   color: var(--muted);
 }
 
@@ -897,6 +955,7 @@ footer {
   .section-grid,
   .story-section,
   .story-section.reverse,
+  .ecosystem-grid,
   .knowledge-grid,
   .order-section,
   .favorite-grid,
@@ -965,6 +1024,7 @@ footer {
   .favorites,
   .story-section,
   .knowledge-section,
+  .ecosystem-section,
   .order-section,
   .page-shell,
   .signup {
