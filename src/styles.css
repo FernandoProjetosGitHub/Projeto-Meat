@@ -73,10 +73,17 @@ a {
 }
 
 .brand span {
-  color: var(--amber);
   font-size: 0.96rem;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.brand-fire {
+  color: #c93a2d;
+}
+
+.brand-ground {
+  color: var(--amber);
 }
 
 .brand strong {
@@ -403,6 +410,10 @@ footer p {
   border: 1px solid rgba(246, 239, 229, 0.1);
 }
 
+.story-section > * {
+  min-width: 0;
+}
+
 .ecosystem-section {
   margin-bottom: clamp(4rem, 8vw, 7rem);
 }
@@ -467,7 +478,10 @@ footer p {
 }
 
 .story-media {
+  width: 100%;
+  max-width: 100%;
   min-height: 25rem;
+  overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(246, 239, 229, 0.12);
   background-position: center;
@@ -494,6 +508,7 @@ footer p {
 }
 
 .story-copy {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -782,7 +797,6 @@ footer {
 }
 
 .footer-logo span {
-  color: var(--amber);
   font-size: 0.72rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -970,6 +984,7 @@ footer {
 
   .story-media {
     min-height: 18rem;
+    aspect-ratio: 16 / 10;
   }
 
   .order-copy {
@@ -1003,6 +1018,10 @@ footer {
     gap: 1.2rem;
   }
 
+  .footer-logo {
+    width: 8rem;
+  }
+
   .special-popup {
     left: 1rem;
     right: 1rem;
@@ -1013,11 +1032,11 @@ footer {
 
 @media (max-width: 480px) {
   .brand strong {
-    font-size: 1.55rem;
+    font-size: 1.42rem;
   }
 
   .brand span {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 
   .section-grid,
@@ -1077,6 +1096,7 @@ footer {
 
   .story-media {
     min-height: 15.5rem;
+    aspect-ratio: 4 / 3;
   }
 
   .dish-card,
@@ -1090,5 +1110,37 @@ footer {
     right: 0.85rem;
     bottom: 0.85rem;
     width: 3.55rem;
+  }
+
+  .footer-logo {
+    width: 7.4rem;
+  }
+
+  .footer-logo strong {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    gap: 0.2rem;
+  }
+
+  .brand strong {
+    font-size: 1.25rem;
+  }
+
+  .brand span {
+    font-size: 0.68rem;
+  }
+
+  .hero h1 {
+    font-size: 2.45rem;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .special-popup a {
+    padding-inline: 0.85rem;
   }
 }

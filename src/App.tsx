@@ -40,7 +40,7 @@ const brand = {
   name: 'Fogo de Chão',
   short: 'Fogo',
   accent: 'de Chão',
-  ambassador: 'Dennis Meat',
+  curator: 'Dennis Meat',
   burger: 'Meat Bullguer',
 };
 
@@ -72,8 +72,8 @@ const slides = [
       'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1800&q=85',
   },
   {
-    title: 'Dennis Meat conduz.',
-    subtitle: 'O embaixador das marcas assina a experiencia, compartilha conhecimento e aproxima a brasa da comunidade.',
+    title: 'Marcas conectadas.',
+    subtitle: 'Conteudo, cortes e hamburgueria nascem do mesmo fogo, com linguagem propria e identidade integrada.',
     image:
       'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
   },
@@ -88,7 +88,7 @@ const slides = [
 const menuItems = [
   ['Picanha Fogo de Chão', 'Corte nobre selado na brasa, sal parrilla e manteiga da casa.', 'R$ 89'],
   ['Costela 8h', 'Defumada lentamente, finalizada com molho reduzido e farofa crocante.', 'R$ 76'],
-  ['Brisket do Embaixador', 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
+  ['Brisket Fogo de Chão', 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
   ['Espeto Misto', 'Carne, linguica artesanal, frango e queijo coalho no ponto da brasa.', 'R$ 42'],
   ['Meat Bullguer Smash', 'Blend da casa, queijo, cebola tostada e maionese de alho assado.', 'R$ 38'],
   ['Bullguer Brasa Duplo', 'Dois blends, cheddar, bacon tostado e molho defumado da hamburgueria.', 'R$ 46'],
@@ -102,9 +102,9 @@ const ecosystemItems = [
     description: 'A base de churrasco, eventos, cortes especiais e experiencias ao redor da brasa.',
   },
   {
-    name: brand.ambassador,
-    role: 'Embaixador',
-    description: 'A voz tecnica e pessoal do projeto, conectando historia, conhecimento e comunidade.',
+    name: 'Conteudo de brasa',
+    role: 'Curadoria',
+    description: 'Bastidores, tecnicas e historias aparecem como apoio silencioso para fortalecer as marcas.',
   },
   {
     name: brand.burger,
@@ -176,8 +176,8 @@ function Header() {
   return (
     <header className="site-header">
       <NavLink className="brand" to="/" aria-label="Ir para a home" onClick={() => setMenuOpen(false)}>
-        <span>{brand.short}</span>
-        <strong>{brand.accent}</strong>
+        <span className="brand-fire">{brand.short}</span>
+        <strong className="brand-ground">{brand.accent}</strong>
       </NavLink>
 
       <button
@@ -281,8 +281,8 @@ function Home() {
           <h2>Uma marca principal para organizar tudo que nasce da brasa.</h2>
           <p>
             A {brand.name} funciona como casa mae: churrasco, eventos, conteudo, produtos e
-            experiencias. O {brand.ambassador} deixa de ser carro chefe e passa a ser o embaixador
-            que conecta as frentes da marca com autoridade, tecnica e historia.
+            experiencias. A marca organiza cada frente do projeto para que a brasa, a hamburgueria e
+            os cortes especiais tenham presenca propria dentro do mesmo universo.
           </p>
         </div>
         <div className="feature-panel">
@@ -312,7 +312,7 @@ function Home() {
         <div className="story-media story-media-blogger" aria-label="Blogista segurando corte de carne na brasa" />
         <div className="story-copy">
           <p className="eyebrow">Do blog</p>
-          <h2>O embaixador que transforma brasa em narrativa.</h2>
+          <h2>O blog apresenta a cultura por tras das marcas.</h2>
           <p>
             A historia com a brasa comecou em encontros simples, daqueles em que o fogo virava
             motivo para reunir gente e conversar por horas. Foi nesse tempo de teste, erro e ponto
@@ -320,8 +320,8 @@ function Home() {
           </p>
           <p>
             Cada corte ensinou alguma coisa: respeitar a gordura, esperar o descanso, ouvir o som da
-            grelha e entender que churrasco bom nao e pressa. Hoje o {brand.ambassador} assume o
-            papel de embaixador do ecossistema, apresentando bastidores, marcas, receitas e tecnicas.
+            grelha e entender que churrasco bom nao e pressa. O conteudo apoia a Fogo de Chão e a
+            Meat Bullguer sem competir com elas.
           </p>
           <Button className="secondary-button" href={`${import.meta.env.BASE_URL}blog`} endIcon={<ArrowRight size={18} />}>
             Ler no blog
@@ -430,7 +430,7 @@ function BlogPage() {
     <section className="page-shell">
       <div className="section-heading">
         <p className="eyebrow">Conteudo</p>
-        <h1>Blog do Embaixador</h1>
+        <h1>Blog da Brasa</h1>
       </div>
       <div className="blog-grid">
         {posts.map((post) => (
@@ -454,7 +454,7 @@ function Signup() {
     <section id="inscricao" className="signup">
       <div>
         <p className="eyebrow">Lista do ecossistema</p>
-        <h2>Receba novidades da Fogo de Chão, Dennis Meat e Meat Bullguer.</h2>
+        <h2>Receba novidades da Fogo de Chão, Meat Bullguer e conteudos da brasa.</h2>
       </div>
       <form onSubmit={handleValidatedSubmit}>
         <TextField
@@ -491,7 +491,7 @@ function OrderSection() {
         <h2>Monte seu pedido dentro do ecossistema.</h2>
         <p>
           Preencha os dados principais e a equipe retorna pelo WhatsApp para confirmar se o pedido
-          entra pela {brand.name}, pela {brand.burger} ou por uma experiencia com o embaixador.
+          entra pela {brand.name}, pela {brand.burger} ou por uma experiencia de brasa sob medida.
         </p>
       </div>
       <Card component="form" className="order-form" onSubmit={handleValidatedSubmit}>
@@ -544,12 +544,12 @@ function Footer() {
     <footer>
       <div className="footer-main">
         <div className="footer-logo">
-          <span>{brand.short}</span>
-          <strong>{brand.accent}</strong>
+          <span className="brand-fire">{brand.short}</span>
+          <strong className="brand-ground">{brand.accent}</strong>
         </div>
         <p>
-          Ecossistema de brasa com churrasco, hamburgueria, conteudo e marcas conectadas pelo
-          embaixador {brand.ambassador}.
+          Ecossistema de brasa com churrasco, hamburgueria, conteudo e marcas conectadas por uma
+          mesma cultura de fogo.
         </p>
       </div>
       <div className="socials">
@@ -628,8 +628,8 @@ function SpecialPopup({ open, onClose }: { open: boolean; onClose: () => void })
         src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=720&q=85"
         alt="Brisket fatiado servido na brasa"
       />
-      <strong>Brisket do Embaixador</strong>
-      <p>Um destaque da curadoria Dennis Meat dentro do ecossistema Fogo de Chão.</p>
+      <strong>Brisket Fogo de Chão</strong>
+      <p>Um destaque de brasa lenta dentro do ecossistema Fogo de Chão.</p>
       <a href={whatsappUrl} target="_blank" rel="noreferrer">
         Reservar agora
       </a>
