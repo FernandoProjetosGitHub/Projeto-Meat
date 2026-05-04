@@ -73,10 +73,17 @@ a {
 }
 
 .brand span {
-  color: var(--amber);
   font-size: 0.96rem;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.brand-fire {
+  color: #c93a2d;
+}
+
+.brand-ground {
+  color: var(--amber);
 }
 
 .brand strong {
@@ -321,6 +328,7 @@ p {
 .favorites,
 .story-section,
 .knowledge-section,
+.ecosystem-section,
 .order-section,
 .page-shell,
 .signup {
@@ -402,6 +410,57 @@ footer p {
   border: 1px solid rgba(246, 239, 229, 0.1);
 }
 
+.story-section > * {
+  min-width: 0;
+}
+
+.ecosystem-section {
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.ecosystem-card {
+  min-height: 17rem;
+  padding: 1.35rem;
+  color: var(--cream);
+  background:
+    linear-gradient(180deg, rgba(196, 147, 67, 0.1), transparent),
+    rgba(246, 239, 229, 0.045);
+  border: 1px solid rgba(196, 147, 67, 0.18);
+  border-radius: 8px;
+}
+
+.ecosystem-card span {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  padding: 0 0.7rem;
+  color: #160d08;
+  background: var(--amber);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.ecosystem-card h3 {
+  margin: 1rem 0 0.65rem;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.ecosystem-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .story-section.reverse {
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
 }
@@ -419,7 +478,10 @@ footer p {
 }
 
 .story-media {
+  width: 100%;
+  max-width: 100%;
   min-height: 25rem;
+  overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(246, 239, 229, 0.12);
   background-position: center;
@@ -432,6 +494,13 @@ footer p {
     url("https://images.unsplash.com/photo-1532635224-cf024e66d122?auto=format&fit=crop&w=1200&q=85");
 }
 
+.story-media-blogger {
+  background-image:
+    linear-gradient(0deg, rgba(13, 11, 9, 0.42), rgba(13, 11, 9, 0.04)),
+    url("https://images.unsplash.com/photo-1532635224-cf024e66d122?auto=format&fit=crop&w=1200&q=85");
+  background-position: center;
+}
+
 .story-media-side {
   background-image:
     linear-gradient(0deg, rgba(13, 11, 9, 0.52), rgba(13, 11, 9, 0.06)),
@@ -439,6 +508,7 @@ footer p {
 }
 
 .story-copy {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -625,11 +695,14 @@ footer p {
 
 .order-form .MuiInputBase-root,
 .order-form .MuiInputBase-input,
-.order-form textarea {
+.order-form textarea,
+.signup .signup-input .MuiInputBase-root,
+.signup .signup-input .MuiInputBase-input {
   color: var(--cream);
 }
 
-.order-form .MuiInputLabel-root {
+.order-form .MuiInputLabel-root,
+.signup .signup-input .MuiInputLabel-root {
   color: var(--muted);
 }
 
@@ -724,7 +797,6 @@ footer {
 }
 
 .footer-logo span {
-  color: var(--amber);
   font-size: 0.72rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -897,6 +969,7 @@ footer {
   .section-grid,
   .story-section,
   .story-section.reverse,
+  .ecosystem-grid,
   .knowledge-grid,
   .order-section,
   .favorite-grid,
@@ -911,6 +984,7 @@ footer {
 
   .story-media {
     min-height: 18rem;
+    aspect-ratio: 16 / 10;
   }
 
   .order-copy {
@@ -944,6 +1018,10 @@ footer {
     gap: 1.2rem;
   }
 
+  .footer-logo {
+    width: 8rem;
+  }
+
   .special-popup {
     left: 1rem;
     right: 1rem;
@@ -954,17 +1032,18 @@ footer {
 
 @media (max-width: 480px) {
   .brand strong {
-    font-size: 1.55rem;
+    font-size: 1.42rem;
   }
 
   .brand span {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 
   .section-grid,
   .favorites,
   .story-section,
   .knowledge-section,
+  .ecosystem-section,
   .order-section,
   .page-shell,
   .signup {
@@ -1017,6 +1096,7 @@ footer {
 
   .story-media {
     min-height: 15.5rem;
+    aspect-ratio: 4 / 3;
   }
 
   .dish-card,
@@ -1030,5 +1110,37 @@ footer {
     right: 0.85rem;
     bottom: 0.85rem;
     width: 3.55rem;
+  }
+
+  .footer-logo {
+    width: 7.4rem;
+  }
+
+  .footer-logo strong {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    gap: 0.2rem;
+  }
+
+  .brand strong {
+    font-size: 1.25rem;
+  }
+
+  .brand span {
+    font-size: 0.68rem;
+  }
+
+  .hero h1 {
+    font-size: 2.45rem;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .special-popup a {
+    padding-inline: 0.85rem;
   }
 }

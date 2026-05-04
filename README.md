@@ -1,6 +1,6 @@
-# Dennis Meat
+# Fogo de Chão
 
-Landing page React + Vite para a Dennis Meat.
+Landing page React + Vite para o ecossistema Fogo de Chão.
 
 ## Desenvolvimento
 

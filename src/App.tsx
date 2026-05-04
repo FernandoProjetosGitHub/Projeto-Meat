@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { NavLink, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -34,36 +34,83 @@ import {
 } from '@mui/material';
 
 const whatsappUrl =
-  'https://wa.me/5500000000000?text=Oi%2C%20quero%20fazer%20um%20pedido%20na%20Dennis%20Meat';
+  'https://wa.me/5500000000000?text=Oi%2C%20quero%20conhecer%20o%20ecossistema%20Fogo%20de%20Ch%C3%A3o';
+
+const brand = {
+  name: 'Fogo de Chão',
+  short: 'Fogo',
+  accent: 'de Chão',
+  curator: 'Dennis Meat',
+  burger: 'Meat Bullguer',
+};
+
+const phoneValidation = {
+  inputMode: 'numeric' as const,
+  minLength: 11,
+  maxLength: 11,
+  pattern: '\\d{11}',
+  title: 'Digite exatamente 11 numeros, incluindo DDD.',
+};
+
+function onlyElevenDigits(value: string) {
+  return value.replace(/\D/g, '').slice(0, 11);
+}
+
+function handleValidatedSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  if (!event.currentTarget.reportValidity()) {
+    return;
+  }
+}
 
 const slides = [
   {
-    title: 'Brasa baixa. Corte alto.',
-    subtitle: 'Carnes selecionadas, ponto preciso e aquele descanso que transforma textura em sabor.',
+    title: 'Fogo de Chão.',
+    subtitle: 'Um ecossistema de brasa, cortes, hamburgueria e conteudo guiado por quem vive churrasco.',
     image:
       'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1800&q=85',
   },
   {
-    title: 'Defumado com tempo.',
-    subtitle: 'Costela, cupim e cortes especiais saindo lentamente da fumaca para a mesa.',
+    title: 'Marcas conectadas.',
+    subtitle: 'Conteudo, cortes e hamburgueria nascem do mesmo fogo, com linguagem propria e identidade integrada.',
     image:
       'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1800&q=85',
   },
   {
-    title: 'Churrasco de presenca.',
-    subtitle: 'Porcoes generosas, acompanhamentos honestos e atendimento direto pelo WhatsApp.',
+    title: 'Meat Bullguer acende.',
+    subtitle: 'A hamburgueria do ecossistema leva blend, fogo e molhos autorais para uma experiencia mais urbana.',
     image:
       'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1800&q=85',
   },
 ];
 
 const menuItems = [
-  ['Picanha Dennis', 'Corte nobre selado na brasa, sal parrilla e manteiga da casa.', 'R$ 89'],
+  ['Picanha Fogo de Chão', 'Corte nobre selado na brasa, sal parrilla e manteiga da casa.', 'R$ 89'],
   ['Costela 8h', 'Defumada lentamente, finalizada com molho reduzido e farofa crocante.', 'R$ 76'],
-  ['Brisket da Casa', 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
+  ['Brisket Fogo de Chão', 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
   ['Espeto Misto', 'Carne, linguica artesanal, frango e queijo coalho no ponto da brasa.', 'R$ 42'],
-  ['Burger Fogo Baixo', 'Blend da casa, queijo, cebola tostada e maionese de alho assado.', 'R$ 38'],
+  ['Meat Bullguer Smash', 'Blend da casa, queijo, cebola tostada e maionese de alho assado.', 'R$ 38'],
+  ['Bullguer Brasa Duplo', 'Dois blends, cheddar, bacon tostado e molho defumado da hamburgueria.', 'R$ 46'],
   ['Combo Familia', 'Cortes variados, arroz, vinagrete, farofa, pao de alho e mandioca.', 'R$ 159'],
+];
+
+const ecosystemItems = [
+  {
+    name: brand.name,
+    role: 'Casa mae',
+    description: 'A base de churrasco, eventos, cortes especiais e experiencias ao redor da brasa.',
+  },
+  {
+    name: 'Conteudo de brasa',
+    role: 'Curadoria',
+    description: 'Bastidores, tecnicas e historias aparecem como apoio silencioso para fortalecer as marcas.',
+  },
+  {
+    name: brand.burger,
+    role: 'Hamburgueria',
+    description: 'A frente urbana do ecossistema, com burgers de fogo alto, molhos e combos autorais.',
+  },
 ];
 
 const posts = [
@@ -129,8 +176,8 @@ function Header() {
   return (
     <header className="site-header">
       <NavLink className="brand" to="/" aria-label="Ir para a home" onClick={() => setMenuOpen(false)}>
-        <span>Dennis</span>
-        <strong>Meat</strong>
+        <span className="brand-fire">{brand.short}</span>
+        <strong className="brand-ground">{brand.accent}</strong>
       </NavLink>
 
       <button
@@ -165,7 +212,7 @@ function Header() {
 function Home() {
   return (
     <>
-      <section className="hero" aria-label="Dennis Meat">
+      <section className="hero" aria-label={brand.name}>
         <Swiper
           className="hero-swiper"
           modules={[Autoplay, Navigation, Pagination]}
@@ -181,7 +228,7 @@ function Home() {
               <img src={item.image} alt="" className="hero-image" />
               <div className="hero-shade" />
               <motion.div className="hero-content" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <p className="eyebrow">Churrasco autoral / fogo / textura</p>
+                <p className="eyebrow">Ecossistema de brasa / conteudo / marcas</p>
                 <h1>{item.title}</h1>
                 <p>{item.subtitle}</p>
                 <div className="hero-actions">
@@ -192,7 +239,7 @@ function Home() {
                     rel="noreferrer"
                     endIcon={<MessageCircle size={18} />}
                   >
-                    Pedir no WhatsApp
+                    Falar no WhatsApp
                   </Button>
                   <Button className="secondary-button" href={`${import.meta.env.BASE_URL}menu`} endIcon={<ArrowRight size={18} />}>
                     Ver menu
@@ -231,35 +278,50 @@ function Home() {
       <motion.section className="section-grid" {...fadeUp}>
         <div className="section-copy">
           <p className="eyebrow">A casa</p>
-          <h2>Churrasco com estetica de steakhouse e alma de encontro.</h2>
+          <h2>Uma marca principal para organizar tudo que nasce da brasa.</h2>
           <p>
-            A Dennis Meat combina cortes altos, fumaca na medida e acompanhamentos de mesa cheia. A
-            proposta visual acompanha isso: tons escuros, madeira, vermelho queimado e detalhes
-            ambar para deixar a comida no centro.
+            A {brand.name} funciona como casa mae: churrasco, eventos, conteudo, produtos e
+            experiencias. A marca organiza cada frente do projeto para que a brasa, a hamburgueria e
+            os cortes especiais tenham presenca propria dentro do mesmo universo.
           </p>
         </div>
         <div className="feature-panel">
-          <span>Hoje na brasa</span>
-          <strong>Costela premium defumada</strong>
-          <p>Servida com mandioca dourada, farofa da casa e vinagrete fresco.</p>
+          <span>Visao da marca</span>
+          <strong>Brasa como plataforma</strong>
+          <p>Cortes, burgers, acompanhamentos e conhecimento trabalhando dentro do mesmo universo.</p>
+        </div>
+      </motion.section>
+
+      <motion.section className="ecosystem-section" {...fadeUp}>
+        <div className="section-heading">
+          <p className="eyebrow">Ecossistema</p>
+          <h2>Uma arquitetura pronta para novas marcas.</h2>
+        </div>
+        <div className="ecosystem-grid">
+          {ecosystemItems.map((item) => (
+            <Card component="article" className="ecosystem-card" key={item.name}>
+              <span>{item.role}</span>
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+            </Card>
+          ))}
         </div>
       </motion.section>
 
       <motion.section className="story-section contrast-red" {...fadeUp}>
-        <div className="story-media story-media-fire" />
+        <div className="story-media story-media-blogger" aria-label="Blogista segurando corte de carne na brasa" />
         <div className="story-copy">
           <p className="eyebrow">Do blog</p>
-          <h2>Antes de vender churrasco, veio a vontade de reunir gente.</h2>
+          <h2>O blog apresenta a cultura por tras das marcas.</h2>
           <p>
-            A historia com a brasa comecou em encontros simples, daqueles em que alguem chega cedo
-            para acender o fogo e acaba ficando responsavel por fazer todo mundo esperar so mais um
-            pouco. Foi nesse tempo de conversa, paciencia e teste de ponto que nasceu a vontade de
-            virar churrasqueiro.
+            A historia com a brasa comecou em encontros simples, daqueles em que o fogo virava
+            motivo para reunir gente e conversar por horas. Foi nesse tempo de teste, erro e ponto
+            certo que nasceu a vontade de viver churrasco como oficio.
           </p>
           <p>
             Cada corte ensinou alguma coisa: respeitar a gordura, esperar o descanso, ouvir o som da
-            grelha e entender que churrasco bom nao e pressa. A Dennis Meat carrega esse lado
-            pessoal, feito para transformar refeicao em memoria de mesa cheia.
+            grelha e entender que churrasco bom nao e pressa. O conteudo apoia a Fogo de Chão e a
+            Meat Bullguer sem competir com elas.
           </p>
           <Button className="secondary-button" href={`${import.meta.env.BASE_URL}blog`} endIcon={<ArrowRight size={18} />}>
             Ler no blog
@@ -346,7 +408,7 @@ function MenuPage() {
     <section className="page-shell">
       <div className="section-heading">
         <p className="eyebrow">Cardapio</p>
-        <h1>Menu da Brasa</h1>
+        <h1>Menu do Ecossistema</h1>
       </div>
       <div className="menu-list">
         {menuItems.map(([name, description, price]) => (
@@ -368,7 +430,7 @@ function BlogPage() {
     <section className="page-shell">
       <div className="section-heading">
         <p className="eyebrow">Conteudo</p>
-        <h1>Blog Dennis Meat</h1>
+        <h1>Blog da Brasa</h1>
       </div>
       <div className="blog-grid">
         {posts.map((post) => (
@@ -391,10 +453,10 @@ function Signup() {
   return (
     <section id="inscricao" className="signup">
       <div>
-        <p className="eyebrow">Lista da brasa</p>
-        <h2>Receba pratos do dia e cortes especiais antes de todo mundo.</h2>
+        <p className="eyebrow">Lista do ecossistema</p>
+        <h2>Receba novidades da Fogo de Chão, Meat Bullguer e conteudos da brasa.</h2>
       </div>
-      <form>
+      <form onSubmit={handleValidatedSubmit}>
         <TextField
           className="signup-input"
           type="email"
@@ -403,6 +465,13 @@ function Signup() {
           variant="outlined"
           size="small"
           fullWidth
+          required
+          slotProps={{
+            htmlInput: {
+              pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$',
+              title: 'Digite um email valido com @ e dominio.',
+            },
+          }}
         />
         <Button type="submit" className="primary-button" endIcon={<Mail size={18} />}>
           Inscrever
@@ -413,20 +482,42 @@ function Signup() {
 }
 
 function OrderSection() {
+  const [phone, setPhone] = useState('');
+
   return (
     <motion.section id="pedido" className="order-section" {...fadeUp}>
       <div className="order-copy">
         <p className="eyebrow">Pedido</p>
-        <h2>Monte seu pedido ou reserve uma experiencia na brasa.</h2>
+        <h2>Monte seu pedido dentro do ecossistema.</h2>
         <p>
-          Preencha os dados principais e a equipe retorna pelo WhatsApp para confirmar cortes,
-          quantidade, retirada ou evento.
+          Preencha os dados principais e a equipe retorna pelo WhatsApp para confirmar se o pedido
+          entra pela {brand.name}, pela {brand.burger} ou por uma experiencia de brasa sob medida.
         </p>
       </div>
-      <Card component="form" className="order-form">
-        <TextField label="Nome" placeholder="Seu nome" variant="outlined" fullWidth />
-        <TextField label="Telefone" placeholder="(00) 00000-0000" variant="outlined" fullWidth />
-        <TextField label="Tipo de pedido" placeholder="Retirada, delivery ou evento" variant="outlined" fullWidth />
+      <Card component="form" className="order-form" onSubmit={handleValidatedSubmit}>
+        <TextField label="Nome" placeholder="Seu nome" variant="outlined" fullWidth required />
+        <TextField
+          label="Telefone"
+          placeholder="11999999999"
+          variant="outlined"
+          fullWidth
+          required
+          type="tel"
+          value={phone}
+          slotProps={{
+            htmlInput: phoneValidation,
+          }}
+          onChange={(event) => {
+            setPhone(onlyElevenDigits(event.target.value));
+          }}
+        />
+        <TextField
+          label="Tipo de pedido"
+          placeholder="Churrasco, Meat Bullguer ou evento"
+          variant="outlined"
+          fullWidth
+          required
+        />
         <TextField
           label="Detalhes"
           placeholder="Conte quantas pessoas, cortes desejados e horario ideal"
@@ -453,10 +544,13 @@ function Footer() {
     <footer>
       <div className="footer-main">
         <div className="footer-logo">
-          <span>Dennis</span>
-          <strong>Meat</strong>
+          <span className="brand-fire">{brand.short}</span>
+          <strong className="brand-ground">{brand.accent}</strong>
         </div>
-        <p>Churrasco, fogo baixo e cortes de respeito. Atendimento por encomenda e eventos.</p>
+        <p>
+          Ecossistema de brasa com churrasco, hamburgueria, conteudo e marcas conectadas por uma
+          mesma cultura de fogo.
+        </p>
       </div>
       <div className="socials">
         <a href="https://www.instagram.com/dennismeat/" target="_blank" rel="noreferrer">
@@ -528,14 +622,14 @@ function SpecialPopup({ open, onClose }: { open: boolean; onClose: () => void })
       <button onClick={onClose} aria-label="Fechar prato do dia">
         <X size={18} />
       </button>
-      <span>Carro chefe</span>
+      <span>Destaque do ecossistema</span>
       <img
         className="special-image"
         src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=720&q=85"
         alt="Brisket fatiado servido na brasa"
       />
-      <strong>Brisket Dennis Meat</strong>
-      <p>Defumado, fatiado alto e servido com barbecue de goiabada.</p>
+      <strong>Brisket Fogo de Chão</strong>
+      <p>Um destaque de brasa lenta dentro do ecossistema Fogo de Chão.</p>
       <a href={whatsappUrl} target="_blank" rel="noreferrer">
         Reservar agora
       </a>
