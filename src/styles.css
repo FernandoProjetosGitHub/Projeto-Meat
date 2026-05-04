@@ -196,6 +196,10 @@ nav a:hover,
   min-height: calc(100vh - 5rem);
 }
 
+.hero-swiper .swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+}
+
 .hero-swiper .swiper-slide {
   position: relative;
   display: grid;

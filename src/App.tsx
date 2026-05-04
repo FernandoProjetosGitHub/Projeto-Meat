@@ -218,8 +218,8 @@ function Home() {
           modules={[Autoplay, Navigation, Pagination]}
           slidesPerView={1}
           loop
-          speed={850}
-          autoplay={{ delay: 5200, disableOnInteraction: false }}
+          speed={1800}
+          autoplay={{ delay: 3600, disableOnInteraction: false }}
           navigation={{ prevEl: '.carousel-prev', nextEl: '.carousel-next' }}
           pagination={{ clickable: true }}
         >
