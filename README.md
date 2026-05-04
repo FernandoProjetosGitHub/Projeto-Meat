@@ -1,0 +1,16 @@
+# Dennis Meat
+
+Landing page React + Vite para a Dennis Meat.
+
+## Desenvolvimento
+
+```bash
+npm install
+npm run dev
+```
+
+## GitHub Pages
+
+Depois que o workflow terminar, o site deve ficar em:
+
+https://fernandoprojetosgithub.github.io/Projeto-Meat/

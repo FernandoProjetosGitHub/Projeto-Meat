@@ -194,7 +194,7 @@ function Home() {
                   >
                     Pedir no WhatsApp
                   </Button>
-                  <Button className="secondary-button" href="/menu" endIcon={<ArrowRight size={18} />}>
+                  <Button className="secondary-button" href={`${import.meta.env.BASE_URL}menu`} endIcon={<ArrowRight size={18} />}>
                     Ver menu
                   </Button>
                 </div>
@@ -261,7 +261,7 @@ function Home() {
             grelha e entender que churrasco bom nao e pressa. A Dennis Meat carrega esse lado
             pessoal, feito para transformar refeicao em memoria de mesa cheia.
           </p>
-          <Button className="secondary-button" href="/blog" endIcon={<ArrowRight size={18} />}>
+          <Button className="secondary-button" href={`${import.meta.env.BASE_URL}blog`} endIcon={<ArrowRight size={18} />}>
             Ler no blog
           </Button>
         </div>
@@ -291,7 +291,7 @@ function Home() {
           </Card>
           <Card component="article" className="knowledge-card">
             <Utensils size={22} />
-            <h3>Linguiças e espetos</h3>
+            <h3>Linguicas e espetos</h3>
             <p>
               Entram para abrir o apetite, equilibrar a mesa e criar variedade entre cortes nobres e
               porcoes para dividir.
@@ -570,7 +570,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <AppShell />
       </Router>
     </ThemeProvider>
