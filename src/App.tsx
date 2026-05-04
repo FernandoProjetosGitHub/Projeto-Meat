@@ -218,14 +218,9 @@ function Home() {
           modules={[Autoplay, Navigation, Pagination]}
           slidesPerView={1}
           loop
-          speed={1400}
-          autoplay={{
-            delay: 4200,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-            waitForTransition: true,
-          }}
-          navigation={{ prevEl: '.hero-swiper .carousel-prev', nextEl: '.hero-swiper .carousel-next' }}
+          speed={850}
+          autoplay={{ delay: 5200, disableOnInteraction: false }}
+          navigation={{ prevEl: '.carousel-prev', nextEl: '.carousel-next' }}
           pagination={{ clickable: true }}
         >
           {slides.map((item) => (
@@ -253,16 +248,16 @@ function Home() {
               </motion.div>
             </SwiperSlide>
           ))}
-          <div className="carousel-controls" aria-label="Controles do carrossel">
-            <button className="carousel-prev" aria-label="Imagem anterior">
-              <ChevronLeft size={22} />
-            </button>
-            <span>Arraste</span>
-            <button className="carousel-next" aria-label="Proxima imagem">
-              <ChevronRight size={22} />
-            </button>
-          </div>
         </Swiper>
+        <div className="carousel-controls" aria-label="Controles do carrossel">
+          <button className="carousel-prev" aria-label="Imagem anterior">
+            <ChevronLeft size={22} />
+          </button>
+          <span>Arraste</span>
+          <button className="carousel-next" aria-label="Proxima imagem">
+            <ChevronRight size={22} />
+          </button>
+        </div>
       </section>
 
       <section className="signature-strip">

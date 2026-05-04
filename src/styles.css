@@ -43,16 +43,6 @@ body {
   }
 }
 
-@keyframes slowZoom {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.08);
-  }
-}
-
 button,
 input {
   font: inherit;
@@ -214,8 +204,6 @@ nav a:hover,
   height: 100%;
   object-fit: cover;
   filter: saturate(0.82) contrast(1.04);
-  animation: slowZoom 12s ease-in-out infinite alternate;
-  transform-origin: center;
 }
 
 .hero-shade {
