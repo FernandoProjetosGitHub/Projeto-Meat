@@ -34,7 +34,7 @@ import {
 } from '@mui/material';
 
 const whatsappUrl =
-  'https://wa.me/553192779826?text=Oi%2C%20quero%20conhecer%20o%20ecossistema%20Fogo%20de%20Ch%C3%A3o';
+  'https://wa.me/553192779826?text=Oi%2C%20quero%20conhe%C3%A7er%20o%20fogo%20de%20ch%C3%A3o.';
 
 const brand = {
   name: 'Fogo de Chão',
@@ -218,8 +218,8 @@ function Home() {
           modules={[Autoplay, Navigation, Pagination]}
           slidesPerView={1}
           loop
-          speed={1800}
-          autoplay={{ delay: 3600, disableOnInteraction: false }}
+          speed={2000}
+          autoplay={{ delay: 3600, disableOnInteraction: false, pauseOnMouseEnter: false }}
           navigation={{ prevEl: '.carousel-prev', nextEl: '.carousel-next' }}
           pagination={{ clickable: true }}
         >
@@ -227,7 +227,7 @@ function Home() {
             <SwiperSlide key={item.title}>
               <img src={item.image} alt="" className="hero-image" />
               <div className="hero-shade" />
-              <motion.div className="hero-content" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <div className="hero-content">
                 <p className="eyebrow">Ecossistema de brasa / conteudo / marcas</p>
                 <h1>{item.title}</h1>
                 <p>{item.subtitle}</p>
@@ -245,7 +245,7 @@ function Home() {
                     Ver menu
                   </Button>
                 </div>
-              </motion.div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

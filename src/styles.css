@@ -43,16 +43,6 @@ body {
   }
 }
 
-@keyframes slowHeroDrift {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.045);
-  }
-}
-
 button,
 input {
   font: inherit;
@@ -197,7 +187,7 @@ nav a:hover,
 }
 
 .hero-swiper .swiper-wrapper {
-  transition-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+  transition-timing-function: linear;
 }
 
 .hero-swiper .swiper-slide {
@@ -218,8 +208,6 @@ nav a:hover,
   height: 100%;
   object-fit: cover;
   filter: saturate(0.82) contrast(1.04);
-  animation: slowHeroDrift 7.2s ease-in-out infinite alternate;
-  transform-origin: center;
 }
 
 .hero-shade {
