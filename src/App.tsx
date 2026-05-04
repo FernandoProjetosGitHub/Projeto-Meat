@@ -34,7 +34,7 @@ import {
 } from '@mui/material';
 
 const whatsappUrl =
-  'https://wa.me/5500000000000?text=Oi%2C%20quero%20conhecer%20o%20ecossistema%20Fogo%20de%20Ch%C3%A3o';
+  'https://wa.me/553192779826?text=Oi%2C%20quero%20conhecer%20o%20ecossistema%20Fogo%20de%20Ch%C3%A3o';
 
 const brand = {
   name: 'Fogo de Chão',
@@ -201,8 +201,8 @@ function Header() {
         <a href="#pedido" onClick={() => setMenuOpen(false)}>
           Pedido
         </a>
-        <a className="nav-cta" href="#inscricao" onClick={() => setMenuOpen(false)}>
-          Inscreva-se
+        <a className="nav-cta" href="#pedido" onClick={() => setMenuOpen(false)}>
+          Orçamento
         </a>
       </nav>
     </header>
@@ -573,17 +573,21 @@ function Footer() {
 function SpecialPopup({ open, onClose }: { open: boolean; onClose: () => void }) {
   const popupRef = useRef<HTMLElement | null>(null);
   const [bottomOffset, setBottomOffset] = useState(96);
+  const [canShowOnMobile, setCanShowOnMobile] = useState(false);
 
   useEffect(() => {
     function updatePopupOffset() {
       const footer = document.querySelector('footer');
+      const header = document.querySelector('.site-header');
       const popup = popupRef.current;
+      const mobile = window.matchMedia('(max-width: 820px)').matches;
+
+      setCanShowOnMobile(!mobile || window.scrollY > (header?.clientHeight ?? 76));
 
       if (!footer || !popup) {
         return;
       }
 
-      const mobile = window.matchMedia('(max-width: 820px)').matches;
       const baseBottom = mobile ? 91 : 96;
       const footerTop = footer.getBoundingClientRect().top;
       const gap = 16;
@@ -605,7 +609,7 @@ function SpecialPopup({ open, onClose }: { open: boolean; onClose: () => void })
     };
   }, []);
 
-  if (!open) {
+  if (!open || !canShowOnMobile) {
     return null;
   }
 

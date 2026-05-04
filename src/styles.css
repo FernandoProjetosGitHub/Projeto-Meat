@@ -32,6 +32,27 @@ body {
     linear-gradient(135deg, #0d0b09 0%, #17110d 44%, #24150f 100%);
 }
 
+@keyframes emberFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0) scale(1.015);
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
 button,
 input {
   font: inherit;
@@ -79,7 +100,28 @@ a {
 }
 
 .brand-fire {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   color: #c93a2d;
+  text-shadow:
+    0 0 10px rgba(201, 58, 45, 0.28),
+    0 0 18px rgba(196, 147, 67, 0.18);
+  isolation: isolate;
+}
+
+.brand-fire::after {
+  content: "";
+  position: absolute;
+  inset: -0.58rem -0.28rem -0.2rem;
+  z-index: -1;
+  border-radius: 48% 52% 46% 54%;
+  background:
+    radial-gradient(circle at 28% 68%, rgba(216, 170, 92, 0.34) 0 16%, transparent 34%),
+    radial-gradient(circle at 54% 44%, rgba(201, 58, 45, 0.48) 0 18%, transparent 38%),
+    radial-gradient(circle at 78% 74%, rgba(143, 47, 36, 0.42) 0 16%, transparent 34%);
+  filter: blur(1px);
+  transform: skewX(-8deg);
 }
 
 .brand-ground {
@@ -174,6 +216,8 @@ nav a:hover,
   height: 100%;
   object-fit: cover;
   filter: saturate(0.82) contrast(1.04);
+  animation: slowZoom 12s ease-in-out infinite alternate;
+  transform-origin: center;
 }
 
 .hero-shade {
@@ -241,6 +285,17 @@ p {
   border: 1px solid transparent;
   font-weight: 850;
   cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.special-popup a:hover {
+  transform: translateY(-2px);
 }
 
 .primary-button,
@@ -377,6 +432,7 @@ footer p {
     url("https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?auto=format&fit=crop&w=1000&q=85")
       center/cover;
   border: 1px solid rgba(196, 147, 67, 0.25);
+  animation: emberFloat 7s ease-in-out infinite;
 }
 
 .feature-panel span,
@@ -409,6 +465,16 @@ footer p {
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(246, 239, 229, 0.1);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.story-section:hover {
+  transform: translateY(-3px);
+  border-color: rgba(196, 147, 67, 0.24);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
 }
 
 .story-section > * {
@@ -434,6 +500,27 @@ footer p {
     rgba(246, 239, 229, 0.045);
   border: 1px solid rgba(196, 147, 67, 0.18);
   border-radius: 8px;
+}
+
+.ecosystem-card,
+.knowledge-card,
+.dish-card,
+.post-card,
+.menu-row {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ecosystem-card:hover,
+.knowledge-card:hover,
+.dish-card:hover,
+.post-card:hover,
+.menu-row:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196, 147, 67, 0.3);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
 }
 
 .ecosystem-card span {
@@ -498,6 +585,14 @@ footer p {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  transition:
+    transform 260ms ease,
+    filter 260ms ease;
+}
+
+.story-section:hover .story-media {
+  transform: scale(1.012);
+  filter: saturate(1.05) contrast(1.03);
 }
 
 .story-media-fire {
@@ -517,7 +612,7 @@ footer p {
 .story-media-side {
   background-image:
     linear-gradient(0deg, rgba(13, 11, 9, 0.52), rgba(13, 11, 9, 0.06)),
-    url("https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=85");
+    url("/choripan.jpg");
 }
 
 .story-copy {
@@ -1045,10 +1140,44 @@ footer {
   }
 
   .special-popup {
-    left: 1rem;
-    right: 1rem;
+    left: auto;
+    right: 0.85rem;
     bottom: 5.7rem;
-    width: auto;
+    width: min(8.8rem, calc(100vw - 1.7rem));
+    padding: 0.58rem;
+  }
+
+  .special-popup > button {
+    top: 0.35rem;
+    right: 0.35rem;
+    width: 1.55rem;
+  }
+
+  .special-popup span {
+    font-size: 0.62rem;
+  }
+
+  .special-popup strong {
+    margin: 0.42rem 1.4rem 0.28rem 0;
+    font-size: 0.9rem;
+  }
+
+  .special-popup p {
+    margin-bottom: 0.5rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .special-image {
+    margin-top: 0.45rem;
+    border-radius: 6px;
+  }
+
+  .special-popup a {
+    min-height: 2.15rem;
+    width: 100%;
+    padding-inline: 0.45rem;
+    font-size: 0.72rem;
   }
 }
 
@@ -1164,5 +1293,16 @@ footer {
   .secondary-button,
   .special-popup a {
     padding-inline: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
