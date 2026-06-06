@@ -1,6 +1,6 @@
-# Fogo de Chão
+# Let's Brasa
 
-Landing page React + Vite para o ecossistema Fogo de Chão.
+Landing page React + Vite para o ecossistema Let's Brasa.
 
 ## Desenvolvimento
 

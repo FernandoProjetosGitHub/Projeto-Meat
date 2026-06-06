@@ -34,12 +34,12 @@ import {
 } from '@mui/material';
 
 const whatsappUrl =
-  'https://wa.me/553192779826?text=Oi%2C%20quero%20conhe%C3%A7er%20o%20fogo%20de%20ch%C3%A3o.';
+  'https://wa.me/553192779826?text=Oi%2C%20quero%20conhecer%20a%20Let%27s%20Brasa.';
 
 const brand = {
-  name: 'Fogo de Chão',
-  short: 'Fogo',
-  accent: 'de Chão',
+  name: "Let's Brasa",
+  short: "Let's",
+  accent: 'Brasa',
   curator: 'Dennis Meat',
   burger: 'Meat Bullguer',
 };
@@ -66,7 +66,7 @@ function handleValidatedSubmit(event: FormEvent<HTMLFormElement>) {
 
 const slides = [
   {
-    title: 'Fogo de Chão.',
+    title: "Let's Brasa.",
     subtitle: 'Um ecossistema de brasa, cortes, hamburgueria e conteudo guiado por quem vive churrasco.',
     image:
       'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1800&q=85',
@@ -86,9 +86,9 @@ const slides = [
 ];
 
 const menuItems = [
-  ['Picanha Fogo de Chão', 'Corte nobre selado na brasa, sal parrilla e manteiga da casa.', 'R$ 89'],
+  ["Picanha Let's Brasa", 'Corte nobre selado na brasa, sal parrilla e manteiga da casa.', 'R$ 89'],
   ['Costela 8h', 'Defumada lentamente, finalizada com molho reduzido e farofa crocante.', 'R$ 76'],
-  ['Brisket Fogo de Chão', 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
+  ["Brisket Let's Brasa", 'Fatia suculenta, bark escuro e barbecue de goiabada levemente picante.', 'R$ 68'],
   ['Espeto Misto', 'Carne, linguica artesanal, frango e queijo coalho no ponto da brasa.', 'R$ 42'],
   ['Meat Bullguer Smash', 'Blend da casa, queijo, cebola tostada e maionese de alho assado.', 'R$ 38'],
   ['Bullguer Brasa Duplo', 'Dois blends, cheddar, bacon tostado e molho defumado da hamburgueria.', 'R$ 46'],
@@ -320,7 +320,7 @@ function Home() {
           </p>
           <p>
             Cada corte ensinou alguma coisa: respeitar a gordura, esperar o descanso, ouvir o som da
-            grelha e entender que churrasco bom nao e pressa. O conteudo apoia a Fogo de Chão e a
+            grelha e entender que churrasco bom nao e pressa. O conteudo apoia a Let's Brasa e a
             Meat Bullguer sem competir com elas.
           </p>
           <Button className="secondary-button" href={`${import.meta.env.BASE_URL}blog`} endIcon={<ArrowRight size={18} />}>
@@ -454,7 +454,7 @@ function Signup() {
     <section id="inscricao" className="signup">
       <div>
         <p className="eyebrow">Lista do ecossistema</p>
-        <h2>Receba novidades da Fogo de Chão, Meat Bullguer e conteudos da brasa.</h2>
+        <h2>Receba novidades da Let's Brasa, Meat Bullguer e conteudos da brasa.</h2>
       </div>
       <form onSubmit={handleValidatedSubmit}>
         <TextField
@@ -487,11 +487,11 @@ function OrderSection() {
   return (
     <motion.section id="pedido" className="order-section" {...fadeUp}>
       <div className="order-copy">
-        <p className="eyebrow">Pedido</p>
-        <h2>Monte seu pedido dentro do ecossistema.</h2>
+        <p className="eyebrow">Experiencia</p>
+        <h2>Monte seu cardapio e viva uma experiencia de brasa.</h2>
         <p>
-          Preencha os dados principais e a equipe retorna pelo WhatsApp para confirmar se o pedido
-          entra pela {brand.name}, pela {brand.burger} ou por uma experiencia de brasa sob medida.
+          Conte a ocasiao, o numero de pessoas e o estilo da mesa. A equipe retorna pelo WhatsApp
+          com uma sugestao sob medida para {brand.name}, {brand.burger} ou uma experiencia completa.
         </p>
       </div>
       <Card component="form" className="order-form" onSubmit={handleValidatedSubmit}>
@@ -512,15 +512,15 @@ function OrderSection() {
           }}
         />
         <TextField
-          label="Tipo de pedido"
-          placeholder="Churrasco, Meat Bullguer ou evento"
+          label="Tipo de experiencia"
+          placeholder="Churrasco, Meat Bullguer, evento ou cardapio sob medida"
           variant="outlined"
           fullWidth
           required
         />
         <TextField
           label="Detalhes"
-          placeholder="Conte quantas pessoas, cortes desejados e horario ideal"
+          placeholder="Conte quantas pessoas, cortes desejados, acompanhamentos e horario ideal"
           variant="outlined"
           fullWidth
           multiline
@@ -531,7 +531,7 @@ function OrderSection() {
             <ClipboardList size={18} /> Confirmacao pelo WhatsApp
           </span>
           <Button type="submit" className="primary-button" endIcon={<MessageCircle size={18} />}>
-            Enviar pedido
+            Montar experiencia
           </Button>
         </div>
       </Card>
@@ -632,8 +632,8 @@ function SpecialPopup({ open, onClose }: { open: boolean; onClose: () => void })
         src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=720&q=85"
         alt="Brisket fatiado servido na brasa"
       />
-      <strong>Brisket Fogo de Chão</strong>
-      <p>Um destaque de brasa lenta dentro do ecossistema Fogo de Chão.</p>
+      <strong>Brisket Let's Brasa</strong>
+      <p>Um destaque de brasa lenta dentro do ecossistema Let's Brasa.</p>
       <a href={whatsappUrl} target="_blank" rel="noreferrer">
         Reservar agora
       </a>
